@@ -92,6 +92,7 @@ class BeaconsPlugin : FlutterPlugin, ActivityAware, PluginRegistry.RequestPermis
             channel = MethodChannel(messenger, "beacons_plugin")
             notifyIfPermissionsGranted(context)
             channel?.setMethodCallHandler { call, result ->
+                if (callBack == null) { notifyIfPermissionsGranted(context) }
                 when {
                     call.method == "startMonitoring" -> {
                         stopService = false
