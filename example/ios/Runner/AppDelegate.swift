@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import CoreLocation
+import CoreBluetooth
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -14,7 +15,9 @@ import CoreLocation
 
         locationManager.requestAlwaysAuthorization()
         GeneratedPluginRegistrant.register(with: self)
-
+        if #available(iOS 10.0, *) {
+          UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        }
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }

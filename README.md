@@ -165,6 +165,27 @@ import 'package:beacons_plugin/beacons_plugin.dart';
     await BeaconsPlugin.clearRegions();
 ```
 
+## Add custom beacons layout (AltBeacon)
+
+```dart
+    BeaconsPlugin.addBeaconLayoutForAndroid(
+            "m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25");
+```
+
+## Add custom Foreground scan periods (AltBeacon)
+
+```dart
+    BeaconsPlugin.setForegroundScanPeriodForAndroid(
+            foregroundScanPeriod: 2200, foregroundBetweenScanPeriod: 10);
+```
+
+## Add custom Background scan periods (AltBeacon)
+
+```dart
+    BeaconsPlugin.setBackgroundScanPeriodForAndroid(
+            backgroundScanPeriod: 2200, backgroundBetweenScanPeriod: 10);
+```
+
 ## Set the level of debug messages 
 
 ```dart
@@ -186,6 +207,12 @@ See: [Link](https://developer.android.com/training/location/permissions)
       //Only in case, you want the dialog to be shown again. By Default, dialog will never be shown if permissions are granted.
       await BeaconsPlugin.clearDisclosureDialogShowFlag(false);
     }
+
+    BeaconsPlugin.channel.setMethodCallHandler((call) async {
+        if (call.method == 'isPermissionDialogShown') {
+          //Do something here
+        }
+    });
 ```
 
 ## Scan Results
