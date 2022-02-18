@@ -300,8 +300,12 @@ class BeaconsPlugin : FlutterPlugin, ActivityAware,
                         }
                         builder.show()
                         //}
+                    } else {
+                        doIfPermissionsGranted()
                     }
                 }
+            } else {
+                doIfPermissionsGranted()
             }
         }
 
